@@ -38,7 +38,7 @@ __parse_git_branch() {
 	#git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
 
 	# Quit if this is not a Git repo.
-	branch=$(git symbolic-ref HEAD 2> /dev/null)
+	branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null)
 	if [[ -z $branch ]] ; then
 		# attempt to get short-sha-name
 		branch=":$(git rev-parse --short HEAD 2> /dev/null)"
