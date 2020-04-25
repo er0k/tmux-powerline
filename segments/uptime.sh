@@ -1,6 +1,6 @@
 # Prints the uptime.
 
 run_segment() {
-    uptime | sed 's/.*up \([^,]*\), .*/\1/'
+    uptime | sed -e "s/.* up *//" -e "s/ *days, */d/" -e "s/:/h/" -e "s/,.*/m/"
     return 0
 }
